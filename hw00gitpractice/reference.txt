@@ -1,1 +1,5 @@
-git clone
+git clone - clones repo to local machine
+git add - makes a new file in the repo on your local machine(isn't online yet)
+git status - gives you the status of your local repo
+git commit -m "filename" - commits changes to your local repo
+git push - syncs your local repo to git online
