@@ -1,0 +1,28 @@
+import java.util.*;
+public class SuperArrayIterator implements Iterator<String>{
+    SuperArray data = new SuperArray();
+    int location = 0;
+    
+  public SuperArrayIterator(SuperArray blah){
+      this.data = blah;
+  }
+
+  public String next(){
+    if(hasNext()){
+      element++;
+      return data.get(element -1);
+    }
+    else{
+      throw new NoSuchElementException();
+    }
+  }
+
+  public boolean hasNext(){
+      return element < data.size();
+  }
+
+  public void remove(){
+    throw new UnsupportedOperationException();
+  }
+
+}
