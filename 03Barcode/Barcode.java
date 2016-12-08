@@ -1,6 +1,5 @@
 public class Barcode implements Comparable<Barcode>{
     private String _zip;
-    private int _checkDigit;
 
     public Barcode(String zip){
 	if(!(zip.length()==5)){
@@ -12,13 +11,6 @@ public class Barcode implements Comparable<Barcode>{
 	    }
 	}
 	_zip=zip;
-	_checkDigit=0;
-    }
-
-    public Barcode clone(){
-	Barcode imposter;
-	imposter=this;
-	return imposter;
     }
 
     private int checkSum(){
@@ -26,12 +18,11 @@ public class Barcode implements Comparable<Barcode>{
 	for(int x=0; x<_zip.length(); x++){
 	    sum+=(_zip.charAt(x)-'0');
 	}
-	_checkDigit=sum%10;
-	return _checkDigit;
+	return sum%10;
     }
 
     public String barcodeImage(){
-	String full=_zip+_checkDigit;
+	String full=_zip+this.checkSum();
 	String image="";
 	String pattern="";
 	for(int x=0; x<full.length(); x++){
@@ -72,6 +63,66 @@ public class Barcode implements Comparable<Barcode>{
 	return image;
     }
 
+    public static String toImage(String code){
+	String image="|";
+	String pattern="";
+	for(int x=0; x<code.length(); x++){
+	    switch(code.charAt(x)){
+		    case '1':
+			pattern=":::||";
+			break;	
+		    case '2':
+			pattern="::|:|";
+			break;
+		    case '3':
+			pattern="::||:";
+			break;
+		    case '4':
+			pattern=":|::|";
+			break;
+		    case '5':
+			pattern=":|:|:";
+			break;
+		    case '6':
+			pattern=":||::";
+			break;
+		    case '7':
+			pattern="|:::|";
+			break;
+		    case '8':
+			pattern="|::|:";
+			break;
+		    case '9':
+			pattern="|:|::";
+			break;
+		    case '0':
+			pattern="||:::";
+			break;
+		}
+	    image+=pattern;
+	}
+	return image+"|";
+    }
+
+    public static String toCode(String image){
+	String[] reference={"||:::",":::||","::|:|","::||:",":|::|",":|:|:",":||::","|:::|","|::|:","|:|::"};
+	String noEnds=image.substring(1,32);
+	String code="";
+	int num=0;
+	for(int x=0;x<noEnds.length()-5;x=x+5){
+	    for(int y=0;y<reference.length;y++){
+		if((reference[y].compareTo(noEnds.substring(x,x+5)))==0){
+		    num=y;
+		}
+	    }
+	    code+=num;
+	}
+	    
+	return code;
+    }
+	    
+	
+
     public String toString(){
 	String ans=_zip+this.checkSum()+"   "+"|"+this.barcodeImage()+"|";
 	return ans;
@@ -104,6 +155,8 @@ public class Barcode implements Comparable<Barcode>{
 	  Barcode e= new Barcode("12.45");
 	  System.out.println(e);
 	*/
+	System.out.println(toCode("|||:::|::|::|::|:|:|::::|||::|:|"));
+	System.out.println(toImage("084518"));
     }
     
 }
