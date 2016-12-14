@@ -1,0 +1,37 @@
+public class Sorts{
+    
+    public static String name(){
+	return "10.Zheng.Stephanie";
+    }
+
+    public static int[] selectionSort(int[] data){
+	int[] newArray=new int[data.length];
+	int location;
+	for(int x=0; x<data.length; x++){
+	    location=x;
+	    for(int y=0;y<data.length;y++){
+		if(data[y]<data[location]){
+		    location=y;
+		}
+	    }
+	    
+	}
+	return newArray;
+    }
+
+    public static String toString(int[] data){
+	String ans="[";
+	for(int x=0;x<data.length;x++){
+	    ans+=data[x];
+	}
+	return ans+="]";
+    }
+
+    public static void main(String[]args){
+	int[]test={64,25,12,22,11};
+	System.out.println(toString(selectionSort(test)));
+    }
+    
+}
+		
+    
