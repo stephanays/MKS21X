@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Sorts{
     
     public static String name(){
@@ -21,19 +22,19 @@ public class Sorts{
 	return data;
     }
 
-    public static String toString(int[] data){
-	String ans="[";
-	for(int x=0;x<data.length;x++){
-	    if(x==data.length-1){
-		ans+=data[x];
-	    }else{
-		ans+=data[x]+",";
-	    }
-	}
-	return ans+="]";
-    }
+    // public static String toString(int[] data){
+    // 	String ans="[";
+    // 	for(int x=0;x<data.length;x++){
+    // 	    if(x==data.length-1){
+    // 		ans+=data[x];
+    // 	    }else{
+    // 		ans+=data[x]+",";
+    // 	    }
+    // 	}
+    // 	return ans+="]";
+    // }
 
-    public static void main(String[]args){
+    public static void main(String[] args) {
     }
     
 }
